@@ -7,8 +7,12 @@ app/**/*.js
 app/**/*.js.map
 
 # dependencies
+*/node_modules/*
+BackEnd/node_modules/
 Presentation/node_modules/
+BackEnd/bower_components/
 Presentation/bower_components/
+
 
 # IDEs and editors
 .idea/
