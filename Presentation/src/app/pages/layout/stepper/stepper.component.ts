@@ -1,3 +1,4 @@
+import { MyMovieServiceService } from 'app/my-movie-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,11 +12,24 @@ export class StepperComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
+  $Movies = [];
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private dataService: MyMovieServiceService) {
   }
 
+  getMovies() {
+    this.dataService.sendGetRequest().subscribe((data: any[])=>{
+      console.log(data);
+      if (data['status'] === 200) {
+        this.$Movies = data['data'];        
+      }
+    })  
+  }
   ngOnInit() {
+
+    this.getMovies();
+
     this.firstForm = this.fb.group({
       firstCtrl: ['', Validators.required],
     });
