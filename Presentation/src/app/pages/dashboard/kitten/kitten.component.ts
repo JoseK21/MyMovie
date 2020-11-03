@@ -6,7 +6,7 @@ import { NbThemeService } from '@nebular/theme';
   styleUrls: ['./kitten.component.scss'],
   templateUrl: './kitten.component.html',
 })
-export class KittenComponent implements OnDestroy {
+export class KittenComponent implements  OnDestroy {
 
   currentTheme: string;
   themeSubscription: any;
@@ -16,6 +16,7 @@ export class KittenComponent implements OnDestroy {
       this.currentTheme = theme.name;
     });
   }
+
 
   ngOnDestroy() {
     this.themeSubscription.unsubscribe();

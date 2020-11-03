@@ -1,5 +1,6 @@
 'use strict'
 
+const cors = require('cors'); 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -13,6 +14,7 @@ db.authenticate()
     .catch(err => console.log('Error: ' + err))
 
 const app = express();
+app.use(cors());
 
 // Cargar rutas
 const movie_routes = require('./routes/movie');
