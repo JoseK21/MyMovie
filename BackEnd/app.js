@@ -15,14 +15,14 @@ db.authenticate()
 const app = express();
 
 // Cargar rutas
-//const movie_routes = require('./routes/movie');
+const movie_routes = require('./routes/movie');
 
 // Middlewares
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 // Routes
-//app.use('/api', movie_routes);
+app.use('/api', movie_routes);
 
 const PORT = process.env.PORT || 5000;
 
