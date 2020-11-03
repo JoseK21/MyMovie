@@ -134,4 +134,39 @@ router.get('/search', (req, res) => {
         }))
 });
 
+
+// Search by gender
+router.get('/gender', (req, res) => {
+    let {
+        Gender
+    } = req.body;
+
+    Movie.findAll({
+            raw: true,
+            where: {
+                Gender: {
+                    [Op.like]: '%' + Gender + '%'
+                }
+            }
+        })
+        .then(movies => {
+            if (movies.length == 0) {
+                res.json({
+                    'status': 204,
+                    'message': '0 movies found',
+                })
+            }
+            res.json({
+                'status': 200,
+                'message': 'Searching movies successfully',
+                'data': movies
+            })
+
+        })
+        .catch(() => res.json({
+            'status': 404,
+            'message': 'Faltan datos por enviar',
+        }))
+})
+
 module.exports = router;
