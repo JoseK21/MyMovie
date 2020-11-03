@@ -10,8 +10,8 @@ app/**/*.js
 app/**/*.js.map
 
 # dependencies
-node_modules/
-bower_components/
+Presentation/node_modules/
+Presentation/bower_components/
 
 # IDEs and editors
 .idea/
