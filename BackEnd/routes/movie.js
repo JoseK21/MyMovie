@@ -42,6 +42,7 @@ router.post('/add', (req, res) => {
         Popularity,
         Image
     } = req.body;
+
     // Data Validation
     try {
         var validate_name = !validator.isEmpty(Name);
@@ -100,6 +101,7 @@ router.post('/add', (req, res) => {
         });
     }
 });
+
 // Search for name
 router.get('/search', (req, res) => {
     let {
@@ -133,5 +135,68 @@ router.get('/search', (req, res) => {
             'message': 'Faltan datos por enviar',
         }))
 });
+
+//Modify movie
+router.put('/modify', (req, res) =>{
+    let {
+        ID,
+        Name,
+        Director,
+        Year,
+        Gender,
+        Language,
+        Favorite,
+        IMDB,
+        Style,
+        MetaScore,
+        Popularity,
+        Image
+    } = req.body;
+    
+    // Data Validation
+    try {
+        var validate_name = !validator.isEmpty(Name);
+        var validate_director = !validator.isEmpty(Director);
+        var validate_year = !validator.isEmpty(Year);
+        var validate_genre = !validator.isEmpty(Gender);
+        var validate_language = !validator.isEmpty(Language);
+        var validate_favorite = !validator.isEmpty(Favorite);
+        var validate_image = !validator.isEmpty(Image);
+        var validate_style = !validator.isEmpty(Style);
+        var validate_popularity = !validator.isEmpty(Popularity);
+
+    } catch (err) {
+        return res.json({
+            'status': 404,
+            'message': 'Faltan datos por enviar'
+        });
+    }
+
+    if (validate_name && validate_director && validate_year && validate_genre && validate_language && validate_favorite && validate_image && validate_style && validate_popularity) {
+        // Update Arguments 
+        // Posibles cambios con respecto a la vista web
+        Movie.update(
+            {Name: req.body.Name,
+            Director: req.body.Director,
+            Year: req.body.Year,
+            Gender: req.body.Gender,
+            Language: req.body.Language,
+            Favorite: req.body.Favorite,
+            IMDB: req.body.IMDB,
+            Style: req.body.Style,
+            MetaScore: req.body.MetaScore,
+            Image: req.body.Image},
+            {where: {ID: req.body.ID}}   
+        )
+        .then(movie => res.json({
+            'status': 200,
+            'message': 'Adding movies successfully',
+        }))
+        .catch(() => res.json({
+            'status': 404,
+            'message': 'Faltan datos por enviar',
+        }))
+    }
+})
 
 module.exports = router;
