@@ -137,7 +137,7 @@ router.get('/search', (req, res) => {
 });
 
 //Modify movie
-router.put('/modify', (req, res) =>{
+router.put('/modify', (req, res) => {
     let {
         ID,
         Name,
@@ -152,7 +152,7 @@ router.put('/modify', (req, res) =>{
         Popularity,
         Image
     } = req.body;
-    
+
     // Data Validation
     try {
         var validate_name = !validator.isEmpty(Name);
@@ -175,28 +175,60 @@ router.put('/modify', (req, res) =>{
     if (validate_name && validate_director && validate_year && validate_genre && validate_language && validate_favorite && validate_image && validate_style && validate_popularity) {
         // Update Arguments 
         // Posibles cambios con respecto a la vista web
-        Movie.update(
-            {Name: req.body.Name,
-            Director: req.body.Director,
-            Year: req.body.Year,
-            Gender: req.body.Gender,
-            Language: req.body.Language,
-            Favorite: req.body.Favorite,
-            IMDB: req.body.IMDB,
-            Style: req.body.Style,
-            MetaScore: req.body.MetaScore,
-            Image: req.body.Image},
-            {where: {ID: req.body.ID}}   
-        )
-        .then(movie => res.json({
-            'status': 200,
-            'message': 'Adding movies successfully',
-        }))
+        Movie.update({
+                Name: req.body.Name,
+                Director: req.body.Director,
+                Year: req.body.Year,
+                Gender: req.body.Gender,
+                Language: req.body.Language,
+                Favorite: req.body.Favorite,
+                IMDB: req.body.IMDB,
+                Style: req.body.Style,
+                MetaScore: req.body.MetaScore,
+                Image: req.body.Image
+            }, {
+                where: {
+                    ID: req.body.ID
+                }
+            })
+            .then(movie => res.json({
+                'status': 200,
+                'message': 'Adding movies successfully',
+            }))
+    }
+});
+// Search by gender
+router.get('/gender', (req, res) => {
+    let {
+        Gender
+    } = req.body;
+
+    Movie.findAll({
+            raw: true,
+            where: {
+                Gender: {
+                    [Op.like]: '%' + Gender + '%'
+                }
+            }
+        })
+        .then(movies => {
+            if (movies.length == 0) {
+                res.json({
+                    'status': 204,
+                    'message': '0 movies found',
+                })
+            }
+            res.json({
+                'status': 200,
+                'message': 'Searching movies successfully',
+                'data': movies
+            })
+
+        })
         .catch(() => res.json({
             'status': 404,
             'message': 'Faltan datos por enviar',
         }))
-    }
-})
+});
 
 module.exports = router;
