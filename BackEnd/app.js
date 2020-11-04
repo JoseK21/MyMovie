@@ -18,6 +18,7 @@ app.use(cors());
 
 // Cargar rutas
 const movie_routes = require('./routes/movie');
+const comment_routes = require('./routes/comment');
 
 // Middlewares
 app.use(bodyParser.urlencoded({extended:false}));
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api', movie_routes);
+app.use('/api', comment_routes);
 
 const PORT = process.env.PORT || 5000;
 
