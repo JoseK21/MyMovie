@@ -19,10 +19,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   themes = [
     {
-      value: 'default',
-      name: 'Light',
-    },
-    {
       value: 'dark',
       name: 'Dark',
     },
@@ -33,6 +29,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       value: 'corporate',
       name: 'Corporate',
+    },
+    {
+      value: 'default',
+      name: 'Light',
     },
   ];
 
@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.changeTheme('dark')
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()

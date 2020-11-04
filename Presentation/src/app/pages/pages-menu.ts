@@ -1,7 +1,7 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-  {
+/*   {
     title: 'E-commerce',
     icon: 'shopping-cart-outline',
     link: '/pages/dashboard',
@@ -11,20 +11,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'IoT Dashboard',
     icon: 'home-outline',
     link: '/pages/iot-dashboard',
-  },
+  }, */
   {
     title: 'FEATURES',
     group: true,
   },
   {
-    title: 'Layout',
+    title: 'Read Movies',
     icon: 'layout-outline',
+    home: true,
     children: [
       {
-        title: 'Stepper',
+        title: 'Movie Cards',
         link: '/pages/layout/stepper',
+        
       },
-      {
+      /* {
         title: 'List',
         link: '/pages/layout/list',
       },
@@ -40,10 +42,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Tabs',
         pathMatch: 'prefix',
         link: '/pages/layout/tabs',
-      },
+      }, */
     ],
   },
   {
+    title: 'C_UD Movies',
+    icon: 'grid-outline',
+    children: [
+      {
+        title: 'Table',
+        link: '/pages/tables/smart-table',
+      },
+/*       {
+        title: 'Tree Grid',
+        link: '/pages/tables/tree-grid',
+      }, */
+    ],
+  },
+/*   {
     title: 'Forms',
     icon: 'edit-2-outline',
     children: [
@@ -197,22 +213,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/editors/ckeditor',
       },
     ],
-  },
-  {
-    title: 'Tables & Data',
-    icon: 'grid-outline',
-    children: [
-      {
-        title: 'Smart Table',
-        link: '/pages/tables/smart-table',
-      },
-      {
-        title: 'Tree Grid',
-        link: '/pages/tables/tree-grid',
-      },
-    ],
-  },
-  {
+  }, {
     title: 'Miscellaneous',
     icon: 'shuffle-2-outline',
     children: [
@@ -221,7 +222,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/miscellaneous/404',
       },
     ],
-  },
+  }, */
   {
     title: 'Auth',
     icon: 'lock-outline',
@@ -234,14 +235,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Register',
         link: '/auth/register',
       },
-      {
+/*       {
         title: 'Request Password',
         link: '/auth/request-password',
       },
       {
         title: 'Reset Password',
         link: '/auth/reset-password',
-      },
+      }, */
     ],
   },
 ];
