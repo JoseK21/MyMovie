@@ -18,11 +18,10 @@ stages:
           inputs:
             command: 'ci'
             workingDir: '$(System.DefaultWorkingDirectory)/BackEnd'
-        - task: Bash@3
+        - task: Npm@1
           inputs:
-            targetType: 'inline'
-            script: 'rm -f package-lock.json && npm install'
-            workingDirectory: '$(System.DefaultWorkingDirectory)/BackEnd'
+            command: 'install'
+            workingDir: '$(System.DefaultWorkingDirectory)/BackEnd'
         - task: Bash@3
           inputs:
             targetType: 'inline'
