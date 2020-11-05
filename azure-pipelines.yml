@@ -26,5 +26,5 @@ stages:
         - task: PublishPipelineArtifact@1
           inputs:
             targetPath: '$(Pipeline.Workspace)/BackEnd'
-            artifact: 'BackEnd'
+            artifact: 'Backend'
             publishLocation: 'pipeline'
